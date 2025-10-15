@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MiniShopBE.Data;
-using MyHotelBookingApp.Middleware;
+using MiniShopBE.Areas.Products.AutofacModules;
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +24,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages(); // nếu có dùng Razor Pages
 
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+{
+    containerBuilder.RegisterModule(new ServiceModule());
+});
+
 // Cấu hình Swagger nếu cần
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -55,8 +64,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
 
-app.UseRequestLogging();       // 📝 Log toàn bộ request
-app.UseExceptionHandling();    // 🛑 Xử lý exception toàn cục
 
 app.UseAuthentication();
 app.UseAuthorization();

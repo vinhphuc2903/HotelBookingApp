@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "pEoPFSlWdAY=",
+  "dgSpecHash": "zxu1cUz8Q7w=",
   "success": true,
   "projectFilePath": "/Users/phucvinh/Desktop/Code/HotelBookingAPI/HotelBookingAPI.csproj",
   "expectedPackageFiles": [
+    "/Users/phucvinh/.nuget/packages/autofac/8.4.0/autofac.8.4.0.nupkg.sha512",
+    "/Users/phucvinh/.nuget/packages/autofac.extensions.dependencyinjection/10.0.0/autofac.extensions.dependencyinjection.10.0.0.nupkg.sha512",
     "/Users/phucvinh/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/phucvinh/.nuget/packages/microsoft.aspnetcore.openapi/8.0.7/microsoft.aspnetcore.openapi.8.0.7.nupkg.sha512",
     "/Users/phucvinh/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
