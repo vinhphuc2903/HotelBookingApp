@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  # ==============================
+  # PostgreSQL Database Container
+  # ==============================
+  postgres:
+    image: postgres:15
+    container_name: postgres_hotel_booking
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: hotel_xyz*123
+      POSTGRES_DB: hotel_shop
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # ==============================
+  # ASP.NET Core API Container
+  # ==============================
+  minishopapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hotelbooking_api
+    depends_on:
+      - postgres
+    ports:
+      - "6000:8080"  # HTTP
+      - "6000:8081"  # HTTPS
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+    volumes:
+      - ./HotelBookingAPI:/app
+    restart: always
+
+volumes:
+  postgres_data:
